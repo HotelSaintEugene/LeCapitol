@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Capitole - Restaurant Gastronomique • Saint-Eugène Hotel</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            50: '#FBF7EA',
+                            100: '#F1E4B8',
+                            light: '#E8D6A0',
+                            DEFAULT: '#C9A63E',
+                            deep: '#8C6F26',
+                        },
+                        onyx: {
+                            DEFAULT: '#12181B',
+                            soft: '#1E2723',
+                        },
+                        bay: { deep: '#0F3A46' },
+                        ink: {
+                            DEFAULT: '#1E2623',
+                            soft: '#5B655F',
+                            faint: '#96A199',
+                        },
+                        ivory: {
+                            DEFAULT: '#FAF7EF',
+                            deep: '#F1E9D8',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        serif: ['Cormorant Garamond', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --onyx: #12181B;
+            --onyx-soft: #1E2723;
+            --ivory: #FAF7EF;
+            --ivory-deep: #F1E9D8;
+            --ink: #1E2623;
+            --ink-soft: #5B655F;
+            --gold: #C9A63E;
+            --gold-light: #E8D6A0;
+            --gold-deep: #8C6F26;
+            --bay-deep: #0F3A46;
+            --line: rgba(201, 166, 62, 0.24);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            background-color: var(--ivory);
+            background-image:
+                radial-gradient(ellipse 70% 40% at 50% -5%, rgba(201,166,62,0.06), transparent),
+                repeating-linear-gradient(112deg, rgba(30,38,35,0.012) 0px, rgba(30,38,35,0.012) 1px, transparent 1px, transparent 4px);
+            color: var(--ink);
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+        }
+
+        :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 1px; }
+
+        /* ---------- Monogram crest ---------- */
+        .crest {
+            width: 40px; height: 40px;
+            border: 1px solid var(--gold);
+            border-radius: 999px;
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.03em;
+            color: var(--gold-deep);
+            flex-shrink: 0;
+            position: relative;
+        }
+        .crest::before {
+            content: '';
+            position: absolute; inset: 3px;
+            border: 1px solid rgba(201,166,62,0.35);
+            border-radius: 999px;
+        }
+        .crest-light { color: var(--gold-light); border-color: var(--gold-light); }
+        .crest-light::before { border-color: rgba(232,214,160,0.35); }
+
+        /* ---------- Navigation ---------- */
+        .luxury-nav {
+            background: rgba(250, 247, 239, 0.94);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--line);
+        }
+        .nav-logo { height: 34px; width: auto; object-fit: contain; }
+        .brand-mark { color: var(--ink); }
+        .brand-mark .accent { color: var(--gold-deep); }
+
+        /* ---------- Hero ---------- */
+        .hero-wrap { position: relative; overflow: hidden; background: var(--onyx); }
+        .hero-bg {
+            position: absolute; inset: 0;
+            background-image: url('assets/baie_alger_background.jpg');
+            background-size: cover; background-position: center;
+            opacity: 0.55;
+        }
+        .hero-veil {
+            position: absolute; inset: 0;
+            background:
+                linear-gradient(180deg, rgba(18,24,27,0.35) 0%, rgba(18,24,27,0.82) 65%, var(--onyx) 100%),
+                radial-gradient(ellipse 60% 50% at 50% 20%, rgba(201,166,62,0.10), transparent);
+        }
+        .hero-logo {
+            height: 80px; width: auto; object-fit: contain;
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0px 6px 14px rgba(0,0,0,0.4)) brightness(0) invert(1);
+            opacity: 0.9;
+        }
+        .coords { font-variant-numeric: tabular-nums; letter-spacing: 0.35em; }
+
+        .hero-title {
+            line-height: 0.95;
+        }
+        .hero-title .foil {
+            background: linear-gradient(115deg, var(--gold-deep) 10%, var(--gold-light) 45%, var(--gold) 65%, var(--gold-light) 88%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .horizon { display: block; width: 100%; height: auto; }
+        .horizon .sun { fill: var(--gold); opacity: 0.9; }
+        .horizon .skyline { fill: var(--onyx); }
+        .hero-wrap .horizon .skyline { fill: var(--ivory); opacity: 0.08; }
+        .horizon .sea { stroke: var(--gold-light); }
+
+        /* Fleuron divider (restrained, used between menu categories) */
+        .divider-wrap { display: flex; align-items: center; gap: 1.1rem; margin: 4.5rem 0 2.5rem 0; }
+        .divider-wrap .rule { flex: 1; height: 1px; background: var(--line); }
+        .fleuron { width: 46px; height: 16px; flex-shrink: 0; color: var(--gold-deep); }
+        .fleuron circle { fill: var(--gold-deep); }
+        .fleuron path { stroke: var(--gold-deep); fill: none; stroke-width: 1.1; }
+
+        .section-eyebrow { letter-spacing: 0.38em; }
+
+        /* ---------- Category tabs (text-led, no icon pills) ---------- */
+        .cat-tabs { border-bottom: 1px solid var(--line); }
+        .category-btn {
+            position: relative;
+            padding-bottom: 0.6rem;
+            color: var(--ink-soft);
+            transition: color 0.3s ease;
+        }
+        .category-btn::after {
+            content: '';
+            position: absolute; left: 0; right: 0; bottom: -1px;
+            height: 2px; background: var(--gold);
+            transform: scaleX(0); transform-origin: left;
+            transition: transform 0.35s cubic-bezier(0.16,1,0.3,1);
+        }
+        .category-btn:hover { color: var(--gold-deep); }
+        .active-category { color: var(--gold-deep) !important; font-weight: 600; }
+        .active-category::after { transform: scaleX(1); }
+
+        .luxury-input {
+            background: #FFFFFF;
+            border: 1px solid var(--line);
+            transition: all 0.3s ease;
+        }
+        .luxury-input:focus {
+            outline: none; border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(201, 166, 62, 0.14);
+        }
+
+        /* ---------- Section headings ---------- */
+        .cat-heading { display: flex; align-items: baseline; gap: 0.8rem; }
+        .cat-heading .kicker {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 0.95rem;
+            color: var(--gold-deep);
+        }
+
+        /* ---------- Cards ---------- */
+        .luxury-card {
+            background: #FFFFFF;
+            position: relative;
+            border: 1px solid var(--line);
+            box-shadow: 0 2px 10px rgba(18,24,27,0.03);
+            transition: all 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
+            border-radius: 0;
+            overflow: hidden;
+        }
+        .luxury-card::before, .luxury-card::after {
+            content: ''; position: absolute; width: 16px; height: 16px;
+            border: 1px solid var(--gold);
+            opacity: 0; transition: opacity 0.4s ease; pointer-events: none; z-index: 2;
+        }
+        .luxury-card::before { top: 9px; left: 9px; border-right: none; border-bottom: none; }
+        .luxury-card::after { bottom: 9px; right: 9px; border-left: none; border-top: none; }
+        .luxury-card:hover::before, .luxury-card:hover::after { opacity: 1; }
+        .luxury-card:hover {
+            border-color: rgba(201,166,62,0.5);
+            box-shadow: 0 20px 40px rgba(18,24,27,0.10);
+            transform: translateY(-4px);
+        }
+
+        .menu-card-image-container {
+            height: 14rem; width: 100%; overflow: hidden; position: relative;
+            background-color: var(--ivory-deep);
+        }
+        .menu-card-image-container::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(180deg, rgba(18,24,27,0) 60%, rgba(18,24,27,0.30) 100%);
+        }
+        .drink-image-container { height: 9rem; }
+
+        .menu-card-image {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 1.2s cubic-bezier(0.16,1,0.3,1), filter 0.6s ease;
+            filter: saturate(0.94) contrast(1.02);
+        }
+        .luxury-card:hover .menu-card-image { transform: scale(1.06); filter: saturate(1.04); }
+
+        /* Dot-leader price rows — the classic printed grande carte convention */
+        .menu-row {
+            display: flex;
+            align-items: baseline;
+            gap: 0.6rem;
+        }
+        .menu-row .dish-name {
+            white-space: normal;
+        }
+        .leader {
+            flex: 1 1 auto;
+            min-width: 12px;
+            border-bottom: 1.5px dotted var(--gold-deep);
+            opacity: 0.45;
+            transform: translateY(-5px);
+            height: 0;
+        }
+        .price {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            color: var(--gold-deep);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .price-compact {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            color: var(--gold-deep);
+            letter-spacing: 0.01em;
+        }
+
+        .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+        .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* ---------- Chef's suggestion band ---------- */
+        .suggestion-band {
+            background: var(--onyx);
+            color: var(--ivory-deep);
+            position: relative;
+            overflow: hidden;
+        }
+        .suggestion-band::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: radial-gradient(ellipse 60% 80% at 15% 50%, rgba(201,166,62,0.10), transparent);
+        }
+
+        /* ---------- Footer ---------- */
+        .site-footer { background: var(--onyx); color: var(--ivory-deep); position: relative; overflow: hidden; }
+        .site-footer .horizon { color: var(--gold); opacity: 0.9; }
+        .site-footer .horizon .skyline { fill: var(--ivory); opacity: 0.06; }
+        .site-footer .horizon .sun { fill: var(--gold); opacity: 0.5; }
+
+        /* ---------- Print ---------- */
+        @media print {
+            .no-print { display: none !important; }
+            body { background: #ffffff !important; color: #000000 !important; background-image: none !important; }
+            .luxury-card { border: none !important; border-bottom: 1px solid #eee !important; box-shadow: none !important; page-break-inside: avoid; margin-bottom: 1rem; padding: 1rem 0 !important; }
+            .luxury-card::before, .luxury-card::after { display: none !important; }
+            .menu-card-image-container { display: none !important; }
+            .hero-bg, .hero-veil, .horizon, .suggestion-band::before { display: none !important; }
+            .reveal { opacity: 1 !important; transform: none !important; }
+        }
+    </style>
+</head>
+<body class="font-sans font-light">
+
+    <header class="no-print luxury-nav fixed top-0 left-0 w-full z-50 px-6 py-3.5 flex justify-between items-center transition-all">
+        <div class="flex items-center space-x-3.5">
+            <div class="crest">LC</div>
+            <img src="assets/logo_saint_eugene.png" alt="Logo Hôtel" class="nav-logo" onerror="this.style.display='none'">
+            <span class="font-serif text-2xl tracking-[0.14em] brand-mark uppercase font-bold">Le <span class="accent">Capitole</span></span>
+        </div>
+
+        <div class="flex items-center space-x-6">
+            <div class="lang-toggle flex items-center space-x-2 text-[10px] font-semibold uppercase">
+                <button id="lang-fr" class="text-gold-deep focus:outline-none border-b border-gold" aria-label="Passer en français">FR</button>
+                <span class="text-ink-faint">|</span>
+                <button id="lang-en" class="text-ink-soft hover:text-gold-deep transition focus:outline-none" aria-label="Switch to English">EN</button>
+            </div>
+            <button onclick="window.print();" class="text-ink-soft hover:text-gold-deep transition text-xs tracking-widest uppercase flex items-center space-x-2 font-medium">
+                <i class="fa-solid fa-print text-sm text-gold-deep"></i>
+                <span class="hidden sm:inline" data-en="Print" data-fr="Imprimer">Imprimer</span>
+            </button>
+        </div>
+    </header>
+
+    <section class="hero-wrap relative pt-40 pb-0 flex flex-col items-center justify-center text-center px-4">
+        <div class="hero-bg"></div>
+        <div class="hero-veil"></div>
+
+        <div class="relative z-10 flex flex-col items-center w-full max-w-4xl pb-20">
+            <img src="assets/logo_saint_eugene.png" alt="Hôtel Saint Eugène Logo" class="hero-logo" onerror="this.style.display='none'">
+
+            <p class="coords text-[10px] text-gold-light mb-5 font-semibold">36.79° N — 3.04° E · BAB EL OUED</p>
+
+            <p class="text-[10px] uppercase tracking-[0.42em] text-gold-light/80 mb-5 font-semibold" data-fr="Table Gastronomique • Saint-Eugène Hotel" data-en="Fine Dining • Saint-Eugène Hotel">Table Gastronomique • Saint-Eugène Hotel</p>
+
+            <h1 class="hero-title font-serif text-6xl md:text-8xl font-bold mb-7 tracking-wide text-ivory">Le <span class="foil">Capitole</span></h1>
+
+            <div class="w-16 h-px bg-gold mb-7"></div>
+
+            <p class="text-ivory-deep/85 font-serif italic text-xl md:text-2xl leading-relaxed max-w-2xl" data-fr="L'excellence culinaire au sommet de Bab El Oued. Une invitation au voyage des sens face à la majestueuse Baie d'Alger." data-en="Culinary excellence at the peak of Bab El Oued. An invitation to a sensory journey facing the majestic Bay of Algiers.">
+                L'excellence culinaire au sommet de Bab El Oued.<br>Une invitation au voyage des sens face à la majestueuse Baie d'Alger.
+            </p>
+        </div>
+
+        <div class="relative z-10 w-full">
+            <svg class="horizon" viewBox="0 0 1200 140" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle class="sun" cx="600" cy="58" r="30"></circle>
+                <path class="skyline" d="M0,140 L0,96 L40,96 L40,80 L58,80 L58,60 A18 18 0 0 1 94,60 L94,80 L112,80 L112,92 L150,92 L150,70 L168,70 L168,50 A24 24 0 0 1 216,50 L216,70 L234,70 L234,96 L280,96 L280,84 L300,84 L300,66 A20 20 0 0 1 340,66 L340,84 L360,84 L360,100 L420,100 L420,90 L440,90 L440,72 A18 18 0 0 1 476,72 L476,90 L496,90 L496,104 L560,104 L560,86 L580,86 L580,64 A22 22 0 0 1 624,64 L624,86 L644,86 L644,100 L700,100 L700,92 L720,92 L720,76 A16 16 0 0 1 752,76 L752,92 L772,92 L772,104 L840,104 L840,90 L860,90 L860,68 A20 20 0 0 1 900,68 L900,90 L920,90 L920,98 L980,98 L980,84 L1000,84 L1000,62 A22 22 0 0 1 1044,62 L1044,84 L1064,84 L1064,96 L1120,96 L1120,110 L1200,110 L1200,140 Z"></path>
+                <path class="sea" d="M0,120 Q150,112 300,120 T600,120 T900,120 T1200,120" fill="none" stroke-width="1.5" opacity="0.4"></path>
+            </svg>
+        </div>
+    </section>
+
+    <section class="no-print sticky top-[62px] z-40 bg-ivory/95 backdrop-blur-md border-b border-gold/20 py-4 px-6 shadow-sm">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-end justify-between gap-4">
+
+            <div class="cat-tabs flex items-center space-x-8 overflow-x-auto pb-0 lg:pb-0 no-scrollbar whitespace-nowrap scroll-smooth font-medium">
+                <button onclick="filterService('all')" class="category-btn active-category text-xs uppercase tracking-[0.2em]">
+                    <span data-fr="Tout" data-en="All">Tout</span>
+                </button>
+                <button onclick="filterService('service-capitole')" class="category-btn text-xs uppercase tracking-[0.2em]">
+                    <span data-fr="Grande Carte" data-en="Grande Carte">Grande Carte</span>
+                </button>
+                <button onclick="filterService('service-cafeteria')" class="category-btn text-xs uppercase tracking-[0.2em]">
+                    <span data-fr="Cafétéria" data-en="Cafeteria">Cafétéria</span>
+                </button>
+                <button onclick="filterService('service-room')" class="category-btn text-xs uppercase tracking-[0.2em]">
+                    <span data-fr="Room Service & Snacks" data-en="Room Service & Snacks">Room Service & Snacks</span>
+                </button>
+            </div>
+
+            <div class="relative w-full lg:w-72">
+                <i class="fa-solid fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gold-deep text-xs"></i>
+                <input type="text" id="menu-search" placeholder="Rechercher..." class="luxury-input w-full py-2.5 pl-10 pr-4 text-sm text-ink placeholder-ink-faint" aria-label="Rechercher un plat">
+            </div>
+
+        </div>
+    </section>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 py-12">
+
+        <div id="no-results-msg" class="hidden text-center py-20 text-ink-soft">
+            <i class="fa-solid fa-search text-3xl text-gold/50 mb-4 block"></i>
+            <span class="font-serif italic text-2xl">Aucun plat ne correspond à votre recherche.</span>
+        </div>
+
+        <div class="service-section" id="service-capitole">
+            <div class="text-center mb-2">
+                <p class="section-eyebrow text-[10px] uppercase text-gold-deep font-semibold mb-3" data-fr="Gastronomie & cuisine internationale" data-en="Gastronomy & international cuisine">Gastronomie & cuisine internationale</p>
+                <h1 class="font-serif text-4xl md:text-6xl tracking-[0.06em] text-ink uppercase font-bold" data-fr="Menu Le Capitole" data-en="Le Capitole Menu">Menu Le Capitole</h1>
+            </div>
+            <div class="divider-wrap">
+                <span class="rule"></span>
+                <svg class="fleuron" viewBox="0 0 60 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="5" cy="10" r="1.6"></circle><path d="M20,10 L30,3 L40,10 L30,17 Z"></path><circle cx="55" cy="10" r="1.6"></circle></svg>
+                <span class="rule"></span>
+            </div>
+
+            <div class="cat-heading mb-7">
+                <h2 class="font-serif text-3xl text-ink font-semibold">Nos Grandes Salades</h2>
+                <span class="kicker">— entrées fraîcheur</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                <div class="menu-item luxury-card reveal group flex flex-col" data-keywords="salade cesar poulet romaine parmesan croûtons">
+                    <div class="menu-card-image-container"><img src="assets/salade_cesar.jpg" alt="Salade César" class="menu-card-image" onerror="this.style.display='none'"></div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="menu-row mb-2">
+                            <h3 class="dish-name font-serif text-xl font-bold text-ink group-hover:text-gold-deep transition">Salade César</h3>
+                            <span class="leader"></span>
+                            <span class="price text-xl">2 200 DA</span>
+                        </div>
+                        <p class="text-sm text-ink-soft leading-relaxed">Salade romaine, tomates cerises, œuf dur, filet de poulet pané, croûtons dorés, câpres, copeaux de parmesan, sauce César authentique.</p>
+                    </div>
+                </div>
+                <div class="menu-item luxury-card reveal group flex flex-col" data-keywords="salade nicoise thon anchois oeuf haricots olives">
+                    <div class="menu-card-image-container"><img src="assets/salade_nicoise.jpg" alt="Salade Niçoise" class="menu-card-image" onerror="this.style.display='none'"></div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="menu-row mb-2">
+                            <h3 class="dish-name font-serif text-xl font-bold text-ink group-hover:text-gold-deep transition">Salade Niçoise</h3>
+                            <span class="leader"></span>
+                            <span class="price text-xl">2 100 DA</span>
+                        </div>
+                        <p class="text-sm text-ink-soft leading-relaxed">Salade fraîche, tomates, œuf dur, riz, poivrons, haricots verts, thon, anchois et olives noires.</p>
+                    </div>
+                </div>
+                <div class="menu-item luxury-card reveal group flex flex-col" data-keywords="salade capitole mortadelle fromage concombre">
+                    <div class="menu-card-image-container"><img src="assets/salade_capitole.jpg" alt="Salade Capitole" class="menu-card-image" onerror="this.style.display='none'"></div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="menu-row mb-2">
+                            <h3 class="dish-name font-serif text-xl font-bold text-ink group-hover:text-gold-deep transition">Salade Capitole</h3>
+                            <span class="leader"></span>
+                            <span class="price text-xl">2 000 DA</span>
+                        </div>
+                        <p class="text-sm text-ink-soft leading-relaxed">Salade verte, tomates, œuf dur, poivrons, oignons rouges, concombre, mortadelle et fromage.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cat-heading mb-7">
+                <h2 class="font-serif text-3xl text-ink font-semibold">Entrées</h2>
+                <span class="kicker">— pour ouvrir l'appétit</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                <div class="menu-item luxury-card reveal group flex flex-col" data-keywords="soupe du jour veloute legumes croutons">
+                    <div class="menu-card-image-container"><img src="assets/soupe_jour.jpg" alt="Soupe du jour" class="menu-card-image" onerror="this.style.display='none'"></div>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <h3 class="font-serif text-lg font-bold text-ink group-hover:text-gold-deep transition mb-1">Soupe du jour</h3>
+                        <p class="text-xs text-ink-soft leading-relaxed mb-3 flex-grow">Velouté de légumes frais de saison, herbes aromatiques, accompagné de croûtons.</p>
+                        <span class="price-compact text-base">1 100 DA</span>
+                    </div>
+                </div>
+                <div class="menu-item luxury-card reveal group flex flex-col" data-keywords="oeuf mimosa crudites mayonnaise maison">
+                    <div class="menu-card-image-container"><img src="assets/oeuf_mimosa.jpg" alt="Œuf mimosa" class="menu-card-image" onerror="this.style.display='none'"></div>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <h3 class="font-serif text-lg font-bold text-ink group-hover:text-gold-deep transition mb-1">Œuf mimosa & crudités</h3>
+                        <p class="text-xs text-ink-soft leading-relaxed mb-3 flex-grow">Œufs garnis de mayonnaise maison sur lit de crudités fraîches.</p>
+                        <span class="price-compact text-base">900 DA</span>
+                    </div>
+                </div>
+                <div class="menu-item luxury-card reveal group flex flex-col" data-keywords="brik au thon croustillante oeuf oignon persil citron">
+                    <div class="menu-card-image-container"><img src="assets/brik_thon.jpg" alt="Brik au thon" class="menu-card-image" onerror="this.style.display='none'"></div>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <h3 class="font-serif text-lg font-bold text-ink group-hover:text-gold-deep transition mb-1">Brik au thon</h3>
+                        <p class="text-xs text-ink-soft leading-relaxed mb-3 flex-grow">Feuille de brick croustillante, thon, œuf, oignon, persil et citron.</p>
+                        <span class="price-compact text-base">900 DA</span>
+                    </div>
+                </div>
+                <div class="menu-item luxury-card reveal group flex flex-col" data-keywords="assiette mixte charcuteries fromages affines cornichons beurre">
+                    <div class="menu-card-image-container"><img src="assets/assiette_mixte.jpg" alt="Assiette mixte" class="menu-card-image" onerror="this.style.display='none'"></div>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <h3 class="font-serif text-lg font-bold text-ink group-hover:text-gold-deep transition mb-1">Assiette mixte</h3>
+                        <p class="text-xs text-ink-soft leading-relaxed mb-3 flex-grow">Sélection de charcuteries fines et fromages affinés, cornichons et beurre.</p>
+                        <span class="price-compact text-base">2 000 DA</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cat-heading mb-7">
+                <h2 class="font-serif text-3xl text-ink font-semibold">Pâtes</h2>
+                <span class="kicker">— faites minute</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <div class="menu-item luxury-card reveal group flex flex-col" data-keywords="tagliatelles carbonara creme lardons oeuf parmesan">
+                    <div class="menu-card-image-container"><img src="assets/pates_carbonara.jpg" alt="Tagliatelles Carbonara" class="menu-card-image" onerror="this.style.display='none'"></div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="menu-row mb-2">
+                            <h3 class="dish-name font-serif text-xl font-bold text-ink group-hover:text-gold-deep transition">Tagliatelles Carbonara</h3>
+                            <span class="leader"></span>
+                            <span class="price text-xl">1 600 DA</span>
+                        </div>
+                        <p class="text-sm text-ink-soft leading-relaxed">Crème onctueuse, lardons fumés, jaune d'œuf, parmesan.</p>
+                    </div>
+                </div>
+                <div class="menu-item luxury-card reveal group flex flex-col" data-keywords="tagliatelles au saumon creme fraiche aneth ail">
+                    <div class="menu-card-image-container"><img src="assets/pates_saumon.jpg" alt="Tagliatelles au saumon" class="menu-card-image" onerror="this.style.display='none'"></div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="menu-row mb-2">
+                            <h3 class="dish-name font-serif text-xl font-bold text-ink group-hover:text-gold-deep transition">Tagliatelles au saumon</h3>
+                            <span class="leader"></span>
+                            <span class="price text-xl">2 200 DA</span>
+                        </div>
+                        <p class="text-sm text-ink-soft leading-relaxed">Saumon, crème fraîche, aneth et ail léger.</p>
+                    </div>
+                </div>
+                <div class="menu-item luxury-card reveal group flex flex-col" data-keywords="spaghettis aux crevettes sautees tomates cerises ail huile d'olive">
+                    <div class="menu-card-image-container"><img src="assets/pates_crevettes.jpg" alt="Spaghettis aux crevettes" class="menu-card-image" onerror="this.style.display='none'"></div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="menu-row mb-2">
+                            <h3 class="dish-name font-serif text-xl font-bold text-ink group-hover:text-gold-deep transition">Spaghettis aux crevettes</h3>
+                            <span class="leader"></span>
+                            <span class="price text-xl">2 800 DA</span>
+                        </div>
+                        <p class="text-sm text-ink-soft leading-relaxed">Crevettes sautées, tomates cerises, ail, huile d'olive et persil.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item luxury-card suggestion-band reveal flex flex-col md:flex-row items-center mb-16" data-keywords="plat du jour suggestion chef produits frais marche ardoise">
+                <div class="w-full md:w-1/3 h-64 overflow-hidden relative">
+                    <img src="assets/suggestion_chef.jpg" alt="Suggestion du Chef" class="menu-card-image" onerror="this.style.display='none'">
+                </div>
+                <div class="relative p-8 md:p-12 w-full md:w-2/3 text-center md:text-left">
+                    <span class="text-xs uppercase tracking-[0.3em] text-gold font-bold mb-2 block"><i class="fa-solid fa-star mr-2"></i>Suggestion du Chef</span>
+                    <h3 class="font-serif text-3xl font-bold text-ivory mb-4">Plat du jour</h3>
+                    <p class="text-ivory-deep/80 leading-relaxed mb-4 text-lg">Création du Chef selon les produits frais du marché.</p>
+                    <span class="font-serif italic text-gold-light text-2xl font-bold">Selon ardoise</span>
+                </div>
+            </div>
+
+            <div class="cat-heading mb-7">
+                <h2 class="font-serif text-3xl text-ink font-semibold">Viandes</h2>
+                <span class="kicker">— cuissons au choix</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <div class="menu-item luxury-card reveal group flex flex-col" data-keywords="filet de boeuf sauce poivre roquefort garniture">
+                    <div class="menu-card-image-container"><img src="assets/viande_filet.jpg" alt="Filet de bœuf" class="menu-card-image" onerror="this.style.display='none'"></div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="menu-row mb-2">
+                            <h3 class="dish-name font-serif text-xl font-bold text-ink group-hover:text-gold-deep transition">Filet de bœuf</h3>
+                            <span class="leader"></span>
+                            <span class="price text-xl">3 800 DA</span>
+                        </div>
+                        <p class="text-sm text-ink-soft leading-relaxed">Sauce au poivre ou Roquefort, garniture du jour.</p>
+                    </div>
+                </div>
+                <div class="menu-item luxury-card reveal group flex flex-col" data-keywords="entrecote grillee sauce frites legumes sautees">
+                    <div class="menu-card-image-container"><img src="assets/viande_entrecote.jpg" alt="Entrecôte grillée" class="menu-card-image" onerror="this.style.display='none'"></div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="menu-row mb-2">
+                            <h3 class="dish-name font-serif text-xl font-bold text-ink group-hover:text-gold-deep transition">Entrecôte grillée</h3>
+                            <span class="leader"></span>
+                            <span class="price text-xl">3 200 DA</span>
+                        </div>
+                        <p class="text-sm text-ink-soft leading-relaxed">Sauce au choix, accompagnement frites ou légumes sautés.</p>
+                    </div>
+                </div>
+                <div class="menu-item luxury-card reveal group flex flex-col" data-keywords="supreme de volaille sauce normande champignons riz pommes de terre">
+                    <div class="menu-card-image-container"><img src="assets/viande_volaille.jpg" alt="Suprême de volaille" class="menu-card-image" onerror="this.style.display='none'"></div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="menu-row mb-2">
+                            <h3 class="dish-name font-serif text-xl font-bold text-ink group-hover:text-gold-deep transition">Suprême de volaille</h3>
+                            <span class="leader"></span>
+                            <span class="price text-xl">1 900 DA</span>
+                        </div>
+                        <p class="text-sm text-ink-soft leading-relaxed">Sauce normande aux champignons, riz ou pommes de terre.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cat-heading mb-7">
+                <h2 class="font-serif text-3xl text-ink font-semibold">Poissons & Fruits de Mer</h2>
+                <span class="kicker">— pêche du jour</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                <div class="menu-item luxury-card reveal group flex flex-col" data-keywords="crevettes sautees ail provencale">
+                    <div class="menu-card-image-container"><img src="assets/poisson_crevettes.jpg" alt="Crevettes sautées" class="menu-card-image" onerror="this.style.display='none'"></div>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <h3 class="font-serif text-lg font-bold text-ink group-hover:text-gold-deep transition mb-1">Crevettes sautées</h3>
+                        <p class="text-xs text-ink-soft leading-relaxed mb-3 flex-grow">À l'ail ou sauce provençale.</p>
+                        <span class="price-compact text-base">3 800 DA</span>
+                    </div>
+                </div>
+                <div class="menu-item luxury-card reveal group flex flex-col" data-keywords="daurade a la provencale tomates ail olives herbes fraiches">
+                    <div class="menu-card-image-container"><img src="assets/poisson_daurade.jpg" alt="Daurade à la provençale" class="menu-card-image" onerror="this.style.display='none'"></div>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <h3 class="font-serif text-lg font-bold text-ink group-hover:text-gold-deep transition mb-1">Daurade à la provençale</h3>
+                        <p class="text-xs text-ink-soft leading-relaxed mb-3 flex-grow">Tomates, ail, olives et herbes fraîches.</p>
+                        <span class="price-compact text-base">2 900 DA</span>
+                    </div>
+                </div>
+                <div class="menu-item luxury-card reveal group flex flex-col" data-keywords="pave de saumon a l'oseille creme legere citron">
+                    <div class="menu-card-image-container"><img src="assets/poisson_saumon.jpg" alt="Pavé de saumon" class="menu-card-image" onerror="this.style.display='none'"></div>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <h3 class="font-serif text-lg font-bold text-ink group-hover:text-gold-deep transition mb-1">Pavé de saumon à l'oseille</h3>
+                        <p class="text-xs text-ink-soft leading-relaxed mb-3 flex-grow">Crème légère à l'oseille et citron.</p>
+                        <span class="price-compact text-base">4 200 DA</span>
+                    </div>
+                </div>
+                <div class="menu-item luxury-card reveal group flex flex-col" data-keywords="loup de mer poele sauce cremeuse champignons">
+                    <div class="menu-card-image-container"><img src="assets/poisson_loup.jpg" alt="Loup de mer poêlé" class="menu-card-image" onerror="this.style.display='none'"></div>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <h3 class="font-serif text-lg font-bold text-ink group-hover:text-gold-deep transition mb-1">Loup de mer poêlé</h3>
+                        <p class="text-xs text-ink-soft leading-relaxed mb-3 flex-grow">Sauce crémeuse aux champignons.</p>
+                        <span class="price-compact text-base">2 900 DA</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cat-heading mb-7">
+                <h2 class="font-serif text-3xl text-ink font-semibold">Desserts</h2>
+                <span class="kicker">— la touche finale</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div class="menu-item luxury-card reveal group flex flex-col text-center" data-keywords="creme brulee vanille bourbon sucre caramelise">
+                    <div class="menu-card-image-container"><img src="assets/dessert_creme_brulee.jpg" alt="Crème brûlée" class="menu-card-image" onerror="this.style.display='none'"></div>
+                    <div class="p-5 flex flex-col flex-grow items-center">
+                        <h3 class="font-serif text-lg font-bold text-ink group-hover:text-gold-deep transition mb-1">Crème brûlée</h3>
+                        <p class="text-xs text-ink-soft leading-relaxed mb-3 flex-grow">Vanille bourbon, sucre caramélisé.</p>
+                        <span class="price-compact text-base">1 400 DA</span>
+                    </div>
+                </div>
+                <div class="menu-item luxury-card reveal group flex flex-col text-center" data-keywords="mousse au chocolat noir intense texture aerienne">
+                    <div class="menu-card-image-container"><img src="assets/dessert_mousse.jpg" alt="Mousse au chocolat" class="menu-card-image" onerror="this.style.display='none'"></div>
+                    <div class="p-5 flex flex-col flex-grow items-center">
+                        <h3 class="font-serif text-lg font-bold text-ink group-hover:text-gold-deep transition mb-1">Mousse au chocolat</h3>
+                        <p class="text-xs text-ink-soft leading-relaxed mb-3 flex-grow">Chocolat noir intense, texture aérienne.</p>
+                        <span class="price-compact text-base">1 400 DA</span>
+                    </div>
+                </div>
+                <div class="menu-item luxury-card reveal group flex flex-col text-center" data-keywords="tiramisu saint eugene mascarpone cafe cacao amer">
+                    <div class="menu-card-image-container"><img src="assets/dessert_tiramisu.jpg" alt="Tiramisu Saint-Eugène" class="menu-card-image" onerror="this.style.display='none'"></div>
+                    <div class="p-5 flex flex-col flex-grow items-center">
+                        <h3 class="font-serif text-lg font-bold text-ink group-hover:text-gold-deep transition mb-1">Tiramisu Saint-Eugène</h3>
+                        <p class="text-xs text-ink-soft leading-relaxed mb-3 flex-grow">Mascarpone, café, cacao amer.</p>
+                        <span class="price-compact text-base">1 500 DA</span>
+                    </div>
+                </div>
+                <div class="menu-item luxury-card reveal group flex flex-col text-center" data-keywords="assiette de fruits frais selection de fruits saison">
+                    <div class="menu-card-image-container"><img src="assets/dessert_fruits.jpg" alt="Assiette de fruits frais" class="menu-card-image" onerror="this.style.display='none'"></div>
+                    <div class="p-5 flex flex-col flex-grow items-center">
+                        <h3 class="font-serif text-lg font-bold text-ink group-hover:text-gold-deep transition mb-1">Assiette de fruits frais</h3>
+                        <p class="text-xs text-ink-soft leading-relaxed mb-3 flex-grow">Sélection de fruits de saison.</p>
+                        <span class="price-compact text-base">1 300 DA</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-section" id="service-cafeteria">
+            <div class="text-center mb-2">
+                <p class="section-eyebrow text-[10px] uppercase text-gold-deep font-semibold mb-3">Sélection de Boissons & Rafraîchissements</p>
+                <h1 class="font-serif text-4xl md:text-6xl tracking-[0.06em] text-ink uppercase font-bold" data-fr="Cafétéria" data-en="Cafeteria">Cafétéria</h1>
+            </div>
+            <div class="divider-wrap">
+                <span class="rule"></span>
+                <svg class="fleuron" viewBox="0 0 60 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="5" cy="10" r="1.6"></circle><path d="M20,10 L30,3 L40,10 L30,17 Z"></path><circle cx="55" cy="10" r="1.6"></circle></svg>
+                <span class="rule"></span>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+
+                <div>
+                    <h2 class="font-serif text-xl text-gold-deep mb-4 border-b border-gold/20 pb-2">Eaux minérales</h2>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-8">
+                        <div class="menu-item luxury-card reveal text-center flex flex-col" data-keywords="eau minerale gazeuse">
+                            <div class="menu-card-image-container drink-image-container"><img src="assets/eau_50cl.jpg" alt="Eau 50cl" class="menu-card-image" onerror="this.style.display='none'"></div>
+                            <div class="p-3"><h3 class="font-serif font-bold text-sm">Eau 50 cl</h3><span class="price-compact text-sm block mt-1">200 DA</span></div>
+                        </div>
+                        <div class="menu-item luxury-card reveal text-center flex flex-col" data-keywords="eau minerale">
+                            <div class="menu-card-image-container drink-image-container"><img src="assets/eau_1L.jpg" alt="Eau 1L" class="menu-card-image" onerror="this.style.display='none'"></div>
+                            <div class="p-3"><h3 class="font-serif font-bold text-sm">Eau 1 L</h3><span class="price-compact text-sm block mt-1">300 DA</span></div>
+                        </div>
+                        <div class="menu-item luxury-card reveal text-center flex flex-col" data-keywords="eau gazeuse">
+                            <div class="menu-card-image-container drink-image-container"><img src="assets/eau_gazeuse.jpg" alt="Eau gazeuse" class="menu-card-image" onerror="this.style.display='none'"></div>
+                            <div class="p-3"><h3 class="font-serif font-bold text-sm">Eau gazeuse 33 cl</h3><span class="price-compact text-sm block mt-1">350 DA</span></div>
+                        </div>
+                    </div>
+
+                    <h2 class="font-serif text-xl text-gold-deep mb-4 border-b border-gold/20 pb-2">Soft drinks</h2>
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div class="menu-item luxury-card reveal text-center flex flex-col" data-keywords="coca cola sprite fanta soft drinks">
+                            <div class="menu-card-image-container drink-image-container"><img src="assets/soft_coca.jpg" alt="Coca/Sprite/Fanta" class="menu-card-image" onerror="this.style.display='none'"></div>
+                            <div class="p-3"><h3 class="font-serif font-bold text-sm">Coca-Cola / Sprite / Fanta 33 cl</h3><span class="price-compact text-sm block mt-1">350 DA</span></div>
+                        </div>
+                        <div class="menu-item luxury-card reveal text-center flex flex-col" data-keywords="coca cola canette">
+                            <div class="menu-card-image-container drink-image-container"><img src="assets/soft_coca_can.jpg" alt="Coca canette" class="menu-card-image" onerror="this.style.display='none'"></div>
+                            <div class="p-3"><h3 class="font-serif font-bold text-sm">Coca-Cola canette</h3><span class="price-compact text-sm block mt-1">400 DA</span></div>
+                        </div>
+                        <div class="menu-item luxury-card reveal text-center flex flex-col" data-keywords="hamoud boualem">
+                            <div class="menu-card-image-container drink-image-container"><img src="assets/soft_hamoud.jpg" alt="Hamoud" class="menu-card-image" onerror="this.style.display='none'"></div>
+                            <div class="p-3"><h3 class="font-serif font-bold text-sm">Hamoud Boualem</h3><span class="price-compact text-sm block mt-1">400 DA</span></div>
+                        </div>
+                        <div class="menu-item luxury-card reveal text-center flex flex-col" data-keywords="slim">
+                            <div class="menu-card-image-container drink-image-container"><img src="assets/soft_slim.jpg" alt="Slim" class="menu-card-image" onerror="this.style.display='none'"></div>
+                            <div class="p-3"><h3 class="font-serif font-bold text-sm">Slim</h3><span class="price-compact text-sm block mt-1">400 DA</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 class="font-serif text-xl text-gold-deep mb-4 border-b border-gold/20 pb-2">Schweppes Signature & Jus</h2>
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div class="menu-item luxury-card reveal text-center flex flex-col" data-keywords="schweppes signature grenadine mojito gold ananas peche">
+                            <div class="menu-card-image-container drink-image-container"><img src="assets/drink_schweppes.jpg" alt="Schweppes" class="menu-card-image" onerror="this.style.display='none'"></div>
+                            <div class="p-3">
+                                <h3 class="font-serif font-bold text-sm">Schweppes Signature</h3>
+                                <p class="text-[10px] text-ink-soft mt-1 leading-tight">Grenadine – Mojito – Gold – Ananas – Pêche</p>
+                                <span class="price-compact text-sm block mt-2">350 DA</span>
+                            </div>
+                        </div>
+                        <div class="menu-item luxury-card reveal text-center flex flex-col" data-keywords="jus frais presses minute orange citron fruits saison">
+                            <div class="menu-card-image-container drink-image-container"><img src="assets/drink_jus.jpg" alt="Jus Frais" class="menu-card-image" onerror="this.style.display='none'"></div>
+                            <div class="p-3">
+                                <h3 class="font-serif font-bold text-sm">Jus frais pressés minute</h3>
+                                <p class="text-[10px] text-ink-soft mt-1 leading-tight">Orange – Citron – Fruits de saison</p>
+                                <span class="price-compact text-sm block mt-2">700 DA</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2 class="font-serif text-xl text-gold-deep mb-4 border-b border-gold/20 pb-2">Sélection de cafés & thés</h2>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-8">
+                        <div class="menu-item luxury-card reveal text-center flex flex-col" data-keywords="expresso italien cafe"><div class="menu-card-image-container drink-image-container"><img src="assets/cafe_expresso.jpg" alt="Expresso" class="menu-card-image" onerror="this.style.display='none'"></div><div class="p-3"><h3 class="font-serif font-bold text-sm">Expresso Italien</h3><span class="price-compact text-sm block mt-1">300 DA</span></div></div>
+                        <div class="menu-item luxury-card reveal text-center flex flex-col" data-keywords="double expresso cafe"><div class="menu-card-image-container drink-image-container"><img src="assets/cafe_double.jpg" alt="Double Expresso" class="menu-card-image" onerror="this.style.display='none'"></div><div class="p-3"><h3 class="font-serif font-bold text-sm">Double Expresso</h3><span class="price-compact text-sm block mt-1">450 DA</span></div></div>
+                        <div class="menu-item luxury-card reveal text-center flex flex-col" data-keywords="cafe capsule premium"><div class="menu-card-image-container drink-image-container"><img src="assets/cafe_capsule.jpg" alt="Capsule" class="menu-card-image" onerror="this.style.display='none'"></div><div class="p-3"><h3 class="font-serif font-bold text-sm">Café Capsule Premium</h3><span class="price-compact text-sm block mt-1">450 DA</span></div></div>
+                        <div class="menu-item luxury-card reveal text-center flex flex-col" data-keywords="cappuccino cremeux cafe"><div class="menu-card-image-container drink-image-container"><img src="assets/cafe_cappuccino.jpg" alt="Cappuccino" class="menu-card-image" onerror="this.style.display='none'"></div><div class="p-3"><h3 class="font-serif font-bold text-sm">Cappuccino Crémeux</h3><span class="price-compact text-sm block mt-1">550 DA</span></div></div>
+                        <div class="menu-item luxury-card reveal text-center flex flex-col" data-keywords="cafe au lait"><div class="menu-card-image-container drink-image-container"><img src="assets/cafe_lait.jpg" alt="Café au lait" class="menu-card-image" onerror="this.style.display='none'"></div><div class="p-3"><h3 class="font-serif font-bold text-sm">Café au Lait</h3><span class="price-compact text-sm block mt-1">450 DA</span></div></div>
+                        <div class="menu-item luxury-card reveal text-center flex flex-col" data-keywords="chocolat chaud au lait"><div class="menu-card-image-container drink-image-container"><img src="assets/cafe_chocolat.jpg" alt="Chocolat chaud" class="menu-card-image" onerror="this.style.display='none'"></div><div class="p-3"><h3 class="font-serif font-bold text-sm">Chocolat Chaud au Lait</h3><span class="price-compact text-sm block mt-1">450 DA</span></div></div>
+                        <div class="menu-item luxury-card reveal text-center flex flex-col col-span-2 sm:col-span-3" data-keywords="the raffine infusion selectionnee"><div class="menu-card-image-container drink-image-container"><img src="assets/cafe_the.jpg" alt="Thé" class="menu-card-image" onerror="this.style.display='none'"></div><div class="p-3"><h3 class="font-serif font-bold text-sm">Thé raffiné & infusion sélectionnée</h3><span class="price-compact text-sm block mt-1">350 DA</span></div></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="service-section" id="service-room">
+            <div class="text-center mb-2">
+                <h1 class="font-serif text-4xl md:text-6xl tracking-[0.06em] text-ink uppercase font-bold" data-fr="Room Service & Snacks" data-en="Room Service & Snacks">Room Service & Snacks</h1>
+            </div>
+            <div class="divider-wrap">
+                <span class="rule"></span>
+                <svg class="fleuron" viewBox="0 0 60 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="5" cy="10" r="1.6"></circle><path d="M20,10 L30,3 L40,10 L30,17 Z"></path><circle cx="55" cy="10" r="1.6"></circle></svg>
+                <span class="rule"></span>
+            </div>
+
+            <div class="flex justify-center mb-12">
+                <div class="bg-white border border-gold/30 px-6 py-3 flex space-x-6 text-xs text-ink font-medium uppercase tracking-widest shadow-sm">
+                    <span class="flex items-center"><i class="fa-regular fa-clock text-gold-deep mr-2 text-lg"></i> Disponible 24h/24 – 7j/7</span>
+                    <span class="flex items-center"><i class="fa-solid fa-bell-concierge text-gold-deep mr-2 text-lg"></i> Service inclus</span>
+                </div>
+            </div>
+
+            <div class="cat-heading mb-7">
+                <h2 class="font-serif text-3xl text-ink font-semibold">Clubs & sandwiches premium</h2>
+                <span class="kicker">— servis à toute heure</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                <div class="menu-item luxury-card reveal group flex flex-col" data-keywords="club sandwich classique snacks room service">
+                    <div class="menu-card-image-container"><img src="assets/club_classique.jpg" alt="Club Classique" class="menu-card-image" onerror="this.style.display='none'"></div>
+                    <div class="p-5 flex justify-between items-center bg-white">
+                        <h3 class="font-serif font-bold text-lg text-ink group-hover:text-gold-deep transition">Club Sandwich Classique</h3>
+                        <span class="price-compact text-base">800 DZD</span>
+                    </div>
+                </div>
+                <div class="menu-item luxury-card reveal group flex flex-col" data-keywords="club sandwich poulet fume snacks room service">
+                    <div class="menu-card-image-container"><img src="assets/club_poulet.jpg" alt="Club Poulet" class="menu-card-image" onerror="this.style.display='none'"></div>
+                    <div class="p-5 flex justify-between items-center bg-white">
+                        <h3 class="font-serif font-bold text-lg text-ink group-hover:text-gold-deep transition">Club Sandwich Poulet Fumé</h3>
+                        <span class="price-compact text-base">900 DZD</span>
+                    </div>
+                </div>
+                <div class="menu-item luxury-card reveal group flex flex-col" data-keywords="club sandwich thon snacks room service">
+                    <div class="menu-card-image-container"><img src="assets/club_thon.jpg" alt="Club Thon" class="menu-card-image" onerror="this.style.display='none'"></div>
+                    <div class="p-5 flex justify-between items-center bg-white">
+                        <h3 class="font-serif font-bold text-lg text-ink group-hover:text-gold-deep transition">Club Sandwich Thon</h3>
+                        <span class="price-compact text-base">800 DZD</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <div class="cat-heading mb-7">
+                        <h2 class="font-serif text-3xl text-ink font-semibold">Salades</h2>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="menu-item luxury-card reveal flex" data-keywords="salade cesar room service">
+                            <div class="w-32 h-24 overflow-hidden flex-shrink-0"><img src="assets/salade_cesar.jpg" alt="Salade César" class="w-full h-full object-cover" onerror="this.style.display='none'"></div>
+                            <div class="p-4 flex-grow flex justify-between items-center">
+                                <h3 class="font-serif font-bold text-lg text-ink">Salade César</h3>
+                                <span class="price-compact text-base">2 200 DZD</span>
+                            </div>
+                        </div>
+                        <div class="menu-item luxury-card reveal flex" data-keywords="salade nicoise room service">
+                            <div class="w-32 h-24 overflow-hidden flex-shrink-0"><img src="assets/salade_nicoise.jpg" alt="Salade Niçoise" class="w-full h-full object-cover" onerror="this.style.display='none'"></div>
+                            <div class="p-4 flex-grow flex justify-between items-center">
+                                <h3 class="font-serif font-bold text-lg text-ink">Salade Niçoise</h3>
+                                <span class="price-compact text-base">2 100 DZD</span>
+                            </div>
+                        </div>
+                        <div class="menu-item luxury-card reveal flex" data-keywords="salade capitole room service">
+                            <div class="w-32 h-24 overflow-hidden flex-shrink-0"><img src="assets/salade_capitole.jpg" alt="Salade Capitole" class="w-full h-full object-cover" onerror="this.style.display='none'"></div>
+                            <div class="p-4 flex-grow flex justify-between items-center">
+                                <h3 class="font-serif font-bold text-lg text-ink">Salade Capitole</h3>
+                                <span class="price-compact text-base">2 000 DZD</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="cat-heading mb-7">
+                        <h2 class="font-serif text-3xl text-ink font-semibold">Douceur</h2>
+                    </div>
+                    <div class="menu-item luxury-card reveal group flex flex-col h-full" data-keywords="coffee gourmand cafe assortiment mini douceurs room service">
+                        <div class="menu-card-image-container h-48"><img src="assets/coffee_gourmand.jpg" alt="Coffee Gourmand" class="menu-card-image" onerror="this.style.display='none'"></div>
+                        <div class="p-6 flex flex-col flex-grow justify-center bg-gold-50">
+                            <div class="menu-row mb-2">
+                                <h3 class="dish-name font-serif text-2xl font-bold text-ink group-hover:text-gold-deep transition">Coffee Gourmand</h3>
+                                <span class="leader"></span>
+                                <span class="price text-2xl">1 200 DZD</span>
+                            </div>
+                            <p class="text-ink-soft">Café + assortiment de mini douceurs</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer class="site-footer py-20 text-center mt-10">
+        <div class="absolute inset-x-0 top-0">
+            <svg class="horizon" viewBox="0 0 1200 140" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle class="sun" cx="600" cy="58" r="30"></circle><path class="skyline" d="M0,140 L0,96 L40,96 L40,80 L58,80 L58,60 A18 18 0 0 1 94,60 L94,80 L112,80 L112,92 L150,92 L150,70 L168,70 L168,50 A24 24 0 0 1 216,50 L216,70 L234,70 L234,96 L280,96 L280,84 L300,84 L300,66 A20 20 0 0 1 340,66 L340,84 L360,84 L360,100 L420,100 L420,90 L440,90 L440,72 A18 18 0 0 1 476,72 L476,90 L496,90 L496,104 L560,104 L560,86 L580,86 L580,64 A22 22 0 0 1 624,64 L624,86 L644,86 L644,100 L700,100 L700,92 L720,92 L720,76 A16 16 0 0 1 752,76 L752,92 L772,92 L772,104 L840,104 L840,90 L860,90 L860,68 A20 20 0 0 1 900,68 L900,90 L920,90 L920,98 L980,98 L980,84 L1000,84 L1000,62 A22 22 0 0 1 1044,62 L1044,84 L1064,84 L1064,96 L1120,96 L1120,110 L1200,110 L1200,140 Z"></path></svg>
+        </div>
+        <div class="relative z-10 flex flex-col items-center">
+            <div class="crest crest-light mb-6">LC</div>
+            <h2 class="font-serif text-2xl tracking-[0.2em] text-ivory uppercase font-bold mb-3">Le Capitole</h2>
+            <p class="text-xs uppercase tracking-[0.2em] mb-6 text-gold-light font-semibold" data-fr="Hôtel Saint Eugène" data-en="Saint Eugène Hotel">Hôtel Saint Eugène</p>
+            <p class="text-sm font-serif italic text-ivory-deep/80" data-fr="L'excellence à Alger" data-en="Excellence in Algiers">L'excellence à Alger</p>
+            <div class="w-10 h-px bg-gold/40 my-6"></div>
+            <p class="coords text-[9px] text-gold-light/60">36.79° N — 3.04° E</p>
+        </div>
+    </footer>
+
+    <script>
+        // Recherche en temps réel
+        const searchInput = document.getElementById('menu-search');
+        const menuItems = document.querySelectorAll('.menu-item');
+        const serviceSections = document.querySelectorAll('.service-section');
+        const noResultsMsg = document.getElementById('no-results-msg');
+
+        searchInput.addEventListener('input', function(e) {
+            const query = e.target.value.toLowerCase().trim();
+            let hasResults = false;
+
+            if(query !== '') {
+                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active-category'));
+            } else {
+                document.querySelector('.category-btn[onclick*="all"]').classList.add('active-category');
+            }
+
+            serviceSections.forEach(section => {
+                let sectionHasMatch = false;
+                const itemsInSection = section.querySelectorAll('.menu-item');
+
+                itemsInSection.forEach(item => {
+                    const text = item.textContent.toLowerCase();
+                    const keywords = item.getAttribute('data-keywords') ? item.getAttribute('data-keywords').toLowerCase() : '';
+
+                    if (text.includes(query) || keywords.includes(query)) {
+                        item.style.display = '';
+                        sectionHasMatch = true;
+                        hasResults = true;
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+
+                if (sectionHasMatch) {
+                    section.style.display = '';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+
+            if (hasResults) {
+                noResultsMsg.style.display = 'none';
+            } else {
+                noResultsMsg.style.display = 'block';
+            }
+        });
+
+        // Filtrage par Service Principal
+        function filterService(serviceId) {
+            searchInput.value = '';
+            noResultsMsg.style.display = 'none';
+
+            const buttons = document.querySelectorAll('.category-btn');
+            buttons.forEach(btn => btn.classList.remove('active-category'));
+            event.currentTarget.classList.add('active-category');
+
+            serviceSections.forEach(section => {
+                section.querySelectorAll('.menu-item').forEach(i => i.style.display = '');
+
+                if (serviceId === 'all') {
+                    section.style.display = '';
+                } else {
+                    if (section.id === serviceId) {
+                        section.style.display = '';
+                        const y = section.getBoundingClientRect().top + window.scrollY - 130;
+                        window.scrollTo({top: y, behavior: 'smooth'});
+                    } else {
+                        section.style.display = 'none';
+                    }
+                }
+            });
+        }
+
+        // Multilingue
+        const langFrBtn = document.getElementById('lang-fr');
+        const langEnBtn = document.getElementById('lang-en');
+
+        langFrBtn.addEventListener('click', () => toggleLanguage('fr'));
+        langEnBtn.addEventListener('click', () => toggleLanguage('en'));
+
+        function toggleLanguage(lang) {
+            if(lang === 'fr') {
+                langFrBtn.className = "text-gold-deep focus:outline-none border-b border-gold font-semibold";
+                langEnBtn.className = "text-ink-soft hover:text-gold-deep transition focus:outline-none";
+                searchInput.placeholder = "Rechercher...";
+            } else {
+                langEnBtn.className = "text-gold-deep focus:outline-none border-b border-gold font-semibold";
+                langFrBtn.className = "text-ink-soft hover:text-gold-deep transition focus:outline-none";
+                searchInput.placeholder = "Search...";
+            }
+
+            document.querySelectorAll('[data-fr]').forEach(element => {
+                element.innerHTML = element.getAttribute(`data-${lang}`);
+            });
+        }
+
+        // Scroll reveal (motion-safe)
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReducedMotion) {
+            document.querySelectorAll('.reveal').forEach(el => el.classList.add('is-visible'));
+        } else if ('IntersectionObserver' in window) {
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        io.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+            document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+        } else {
+            document.querySelectorAll('.reveal').forEach(el => el.classList.add('is-visible'));
+        }
+    </script>
+</body>
+</html>
