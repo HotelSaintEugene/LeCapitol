@@ -1144,7 +1144,7 @@
                 <div class="menu-item luxury-card reveal group flex flex-col" data-keywords="penne sicilienne sauce pesto a confirmer">
                     <div class="menu-card-image-container"><img src="assets/pennes-campagnardes-a-la-sicilienne.jpg" alt="Penne à la sicilienne ou sauce pesto" class="menu-card-image" onerror="this.style.display='none'"></div>
                     <div class="p-5">
-                        <h3 class="font-serif text-lg font-bold text-ink group-hover:text-gold-deep transition">Penne à la sicilienne ou sauce pesto <span class="text-xs font-sans font-medium text-gold-deep"></span></h3>
+                        <h3 class="font-serif text-lg font-bold text-ink group-hover:text-gold-deep transition">Penne à la sicilienne ou sauce pesto <span class="text-xs font-sans font-medium text-gold-deep">(à confirmer)</span></h3>
                     </div>
                 </div>
             </div>
@@ -1438,51 +1438,84 @@
     <!-- ==========================================
          NEW PREMIUM POP-UP MENU COMPONENT
          ========================================== -->
+    <style>
+        /* Dedicated Pop-up Stagger Animations */
+        #premium-popup-modal.is-open .popup-anim-title { opacity: 1; transform: translateY(0); }
+        #premium-popup-modal.is-open .popup-anim-divider { opacity: 1; transform: scaleX(1); }
+        #premium-popup-modal.is-open .popup-anim-card { opacity: 1; transform: translateY(0); }
+
+        .popup-anim-title { opacity: 0; transform: translateY(-10px); transition: all 0.6s cubic-bezier(0.16,1,0.3,1) 0.2s; }
+        .popup-anim-divider { opacity: 0; transform: scaleX(0); transition: all 0.7s cubic-bezier(0.16,1,0.3,1) 0.35s; transform-origin: center; }
+        
+        .popup-anim-card { opacity: 0; transform: translateY(15px); transition: all 0.6s cubic-bezier(0.16,1,0.3,1); }
+        .popup-anim-card:nth-child(1) { transition-delay: 0.45s; }
+        .popup-anim-card:nth-child(2) { transition-delay: 0.55s; }
+        .popup-anim-card:nth-child(3) { transition-delay: 0.65s; }
+    </style>
+
     <div id="premium-popup-modal" class="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 opacity-0 pointer-events-none transition-all duration-700 ease-in-out no-print">
         <!-- Backdrop -->
         <div class="absolute inset-0 bg-onyx/70 backdrop-blur-sm popup-close-trigger transition-opacity duration-700"></div>
 
-        <!-- Modal Container -->
-        <div id="premium-popup-content" class="relative w-full max-w-5xl rounded-sm overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.6)] transform scale-95 transition-all duration-700 ease-out border border-gold/30 bg-onyx">
+        <!-- Modal Container (More Compact & Responsive) -->
+        <div id="premium-popup-content" class="relative w-full max-w-4xl rounded-sm overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.6)] transform scale-95 transition-all duration-700 ease-out border border-gold/30 bg-onyx">
             <!-- Background Image & Overlay -->
             <div class="absolute inset-0 bg-[url('assets/baie_alger_background.jpg')] bg-cover bg-center"></div>
             <div class="absolute inset-0 bg-gradient-to-b from-onyx/90 via-onyx/80 to-onyx/95"></div>
             <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(201,166,62,0.05)_0%,transparent_70%)]"></div>
 
             <!-- Close Button -->
-            <button id="premium-popup-close" class="absolute top-4 right-4 sm:top-6 sm:right-6 z-20 text-gold-light/70 hover:text-gold transition-colors duration-300 p-2 text-3xl focus:outline-none">
+            <button id="premium-popup-close" class="absolute top-3 right-3 sm:top-5 sm:right-5 z-20 text-gold-light/70 hover:text-gold transition-colors duration-300 p-2 text-2xl focus:outline-none">
                 <i class="fa-solid fa-xmark font-light"></i>
             </button>
 
             <!-- Content -->
-            <div class="relative z-10 p-8 sm:p-12 md:p-16 flex flex-col items-center text-center">
-                <div class="crest crest-light mb-6 shadow-[0_0_15px_rgba(201,166,62,0.2)]">LC</div>
-                <p class="section-eyebrow text-[10px] uppercase text-gold-light font-semibold mb-3 tracking-[0.3em]">L'Excellence Culinaire</p>
-                <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl text-ivory font-semibold mb-12 tracking-wide drop-shadow-lg">Notre Carte</h2>
+            <div class="relative z-10 p-6 sm:p-10 md:p-12 flex flex-col items-center text-center">
+                
+                <!-- Animated Headers -->
+                <div class="popup-anim-title crest crest-light mb-4 shadow-[0_0_15px_rgba(201,166,62,0.2)] w-10 h-10 text-sm">LC</div>
+                <p class="popup-anim-title section-eyebrow text-[9px] sm:text-[10px] uppercase text-gold-light font-semibold mb-2 tracking-[0.3em]">L'Excellence Culinaire</p>
+                <h2 class="popup-anim-title font-serif text-3xl sm:text-4xl md:text-5xl text-ivory font-semibold mb-4 tracking-wide drop-shadow-lg">Notre Carte</h2>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl">
+                <!-- Animated Divider -->
+                <div class="popup-anim-divider w-16 h-[1px] bg-gold/70 mb-8"></div>
+
+                <!-- Staggered Options (Horizontal on Mobile, Stacked/Grid on Tablet+) -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-5 w-full max-w-3xl">
                     <!-- Option 1: Grande Carte -->
-                    <div class="popup-option group cursor-pointer border border-gold/30 bg-onyx/40 hover:bg-onyx/70 backdrop-blur-md p-8 transition-all duration-500 hover:-translate-y-2 hover:border-gold hover:shadow-[0_15px_40px_rgba(201,166,62,0.15)] flex flex-col items-center justify-center relative overflow-hidden" data-target="service-capitole">
+                    <div class="popup-anim-card popup-option group cursor-pointer border border-gold/30 bg-onyx/50 hover:bg-onyx/80 backdrop-blur-md p-4 sm:p-6 transition-all duration-500 hover:-translate-y-1 hover:border-gold hover:shadow-[0_10px_30px_rgba(201,166,62,0.15)] flex flex-row md:flex-col items-center text-left md:text-center relative overflow-hidden" data-target="service-capitole">
                         <div class="absolute inset-0 bg-gradient-to-t from-gold/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                        <i class="fa-solid fa-utensils text-3xl text-gold mb-5 group-hover:scale-110 transition-transform duration-500"></i>
-                        <h3 class="font-serif text-2xl text-ivory font-bold mb-3">GRANDE CARTE</h3>
-                        <p class="text-xs text-ivory-deep/70 group-hover:text-ivory-deep transition-colors font-light leading-relaxed">Gastronomie & créations internationales</p>
+                        <div class="w-12 sm:w-auto mr-4 md:mr-0 md:mb-4 flex-shrink-0 text-center">
+                            <i class="fa-solid fa-utensils text-2xl sm:text-3xl text-gold group-hover:scale-110 transition-transform duration-500"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-serif text-lg sm:text-xl text-ivory font-bold mb-1">GRANDE CARTE</h3>
+                            <p class="text-[10px] sm:text-xs text-ivory-deep/70 group-hover:text-ivory-deep transition-colors font-light leading-snug">Gastronomie & créations internationales</p>
+                        </div>
                     </div>
 
                     <!-- Option 2: Cafétéria -->
-                    <div class="popup-option group cursor-pointer border border-gold/30 bg-onyx/40 hover:bg-onyx/70 backdrop-blur-md p-8 transition-all duration-500 hover:-translate-y-2 hover:border-gold hover:shadow-[0_15px_40px_rgba(201,166,62,0.15)] flex flex-col items-center justify-center relative overflow-hidden" data-target="service-cafeteria">
+                    <div class="popup-anim-card popup-option group cursor-pointer border border-gold/30 bg-onyx/50 hover:bg-onyx/80 backdrop-blur-md p-4 sm:p-6 transition-all duration-500 hover:-translate-y-1 hover:border-gold hover:shadow-[0_10px_30px_rgba(201,166,62,0.15)] flex flex-row md:flex-col items-center text-left md:text-center relative overflow-hidden" data-target="service-cafeteria">
                         <div class="absolute inset-0 bg-gradient-to-t from-gold/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                        <i class="fa-solid fa-champagne-glasses text-3xl text-gold mb-5 group-hover:scale-110 transition-transform duration-500"></i>
-                        <h3 class="font-serif text-2xl text-ivory font-bold mb-3">CAFÉTÉRIA</h3>
-                        <p class="text-xs text-ivory-deep/70 group-hover:text-ivory-deep transition-colors font-light leading-relaxed">Sélection de thés, cafés & rafraîchissements</p>
+                        <div class="w-12 sm:w-auto mr-4 md:mr-0 md:mb-4 flex-shrink-0 text-center">
+                            <i class="fa-solid fa-champagne-glasses text-2xl sm:text-3xl text-gold group-hover:scale-110 transition-transform duration-500"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-serif text-lg sm:text-xl text-ivory font-bold mb-1">CAFÉTÉRIA</h3>
+                            <p class="text-[10px] sm:text-xs text-ivory-deep/70 group-hover:text-ivory-deep transition-colors font-light leading-snug">Sélection de thés, cafés & rafraîchissements</p>
+                        </div>
                     </div>
 
                     <!-- Option 3: Menu Spécial -->
-                    <div class="popup-option group cursor-pointer border border-gold/30 bg-onyx/40 hover:bg-onyx/70 backdrop-blur-md p-8 transition-all duration-500 hover:-translate-y-2 hover:border-gold hover:shadow-[0_15px_40px_rgba(201,166,62,0.15)] flex flex-col items-center justify-center relative overflow-hidden" data-target="service-special">
+                    <div class="popup-anim-card popup-option group cursor-pointer border border-gold/30 bg-onyx/50 hover:bg-onyx/80 backdrop-blur-md p-4 sm:p-6 transition-all duration-500 hover:-translate-y-1 hover:border-gold hover:shadow-[0_10px_30px_rgba(201,166,62,0.15)] flex flex-row md:flex-col items-center text-left md:text-center relative overflow-hidden" data-target="service-special">
                         <div class="absolute inset-0 bg-gradient-to-t from-gold/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                        <i class="fa-solid fa-star text-3xl text-gold mb-5 group-hover:scale-110 transition-transform duration-500"></i>
-                        <h3 class="font-serif text-2xl text-ivory font-bold mb-3">MENU SPÉCIAL</h3>
-                        <p class="text-xs text-ivory-deep/70 group-hover:text-ivory-deep transition-colors font-light leading-relaxed">Sélection exclusive du mois par le Chef</p>
+                        <div class="w-12 sm:w-auto mr-4 md:mr-0 md:mb-4 flex-shrink-0 text-center">
+                            <i class="fa-solid fa-star text-2xl sm:text-3xl text-gold group-hover:scale-110 transition-transform duration-500"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-serif text-lg sm:text-xl text-ivory font-bold mb-1">MENU SPÉCIAL</h3>
+                            <p class="text-[10px] sm:text-xs text-ivory-deep/70 group-hover:text-ivory-deep transition-colors font-light leading-snug">Sélection exclusive du mois par le Chef</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1555,10 +1588,11 @@
 
             const buttons = document.querySelectorAll('.category-btn');
             buttons.forEach(btn => btn.classList.remove('active-category'));
+            
+            // Adjust targeting for pop-up calls vs native button calls
             if(event && event.currentTarget && event.currentTarget.classList) {
                 event.currentTarget.classList.add('active-category');
             } else {
-                // Si la fonction est appelée par le pop-up (sans event.currentTarget valide)
                 const targetBtn = document.querySelector(`.category-btn[onclick*="${serviceId}"]`);
                 if(targetBtn) targetBtn.classList.add('active-category');
             }
@@ -1703,7 +1737,7 @@
             setInterval(() => goToTesti((testiIndex + 1) % testiDots.length), 6000);
         }
 
-        // Reservation form — builds a pre-filled email (no live booking backend)
+        // Reservation form
         const reservationForm = document.getElementById('reservationForm');
         if (reservationForm) {
             reservationForm.addEventListener('submit', (e) => {
@@ -1738,7 +1772,7 @@
             function openPremiumPopup(e) {
                 if (e) e.preventDefault();
                 popupModal.classList.remove('opacity-0', 'pointer-events-none');
-                popupModal.classList.add('opacity-100', 'pointer-events-auto');
+                popupModal.classList.add('opacity-100', 'pointer-events-auto', 'is-open'); // Added 'is-open' for staggered anim
                 popupContent.classList.remove('scale-95');
                 popupContent.classList.add('scale-100');
                 document.body.style.overflow = 'hidden'; 
@@ -1746,7 +1780,7 @@
 
             // Close function
             function closePremiumPopup() {
-                popupModal.classList.remove('opacity-100', 'pointer-events-auto');
+                popupModal.classList.remove('opacity-100', 'pointer-events-auto', 'is-open');
                 popupModal.classList.add('opacity-0', 'pointer-events-none');
                 popupContent.classList.remove('scale-100');
                 popupContent.classList.add('scale-95');
@@ -1796,12 +1830,11 @@
                 });
             });
 
-            // Trigger Pop-up Automatically on website entry
-            // Delayed slightly to allow the native loader to disappear gracefully
+            // Trigger Pop-up Automatically 700ms after load
             window.addEventListener('load', () => {
                 setTimeout(() => {
                     openPremiumPopup();
-                }, 1500);
+                }, 700);
             });
         });
     </script>
